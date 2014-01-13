@@ -113,12 +113,12 @@ class tesseract inherits tesseract::params {
    * script.                                                                   *
    *****************************************************************************/
   file { '/tmp/jekyll-correct.txt':
-    content => template('BulletinScanner/jekyll-correct.txt.erb'),
+    content => template('bulletinscanner/jekyll-correct.txt.erb'),
   }
   file { '/tmp/lazydog-correct.txt':
-    content => template('BulletinScanner/lazydog-correct.txt.erb'),
+    content => template('bulletinscanner/lazydog-correct.txt.erb'),
   }
   file { '/tmp/druce-correct.txt':
-    content => template('BulletinScanner/druce-correct.txt.erb'),
+    content => template('bulletinscanner/druce-correct.txt.erb'),
   }
 }

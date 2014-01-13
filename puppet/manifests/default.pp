@@ -15,4 +15,4 @@ firewall { '100 allow 80':
   action => 'accept',
 }
 
-include tesseract
+include bulletinscanner
