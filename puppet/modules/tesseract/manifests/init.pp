@@ -5,6 +5,9 @@
 class tesseract inherits tesseract::params {  # has to inherit instead of require because http://docs.puppetlabs.com/puppet/3/reference/lang_classes.html#appendix-smart-parameter-defaults
   require leptonica
   
+  package { 'gcc-c++':
+    ensure => 'installed',
+  }
   package { 'autoconf':
     ensure => 'installed',
   }
@@ -30,6 +33,7 @@ class tesseract inherits tesseract::params {  # has to inherit instead of requir
     # this is just a noop wrapper to make dependency management clearer
     command => '/bin/echo "tesseract prereqs installed through package manager"',
     require => [ 
+                 Package['gcc-c++'],
                  Package['autoconf'],
                  Package['automake'],
                  Package['libtool'],
