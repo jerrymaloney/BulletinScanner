@@ -1,12 +1,12 @@
 #!/bin/sh
-/*****************************************************************************
-* TEST                                                                      *
-* Test that tesseract is working correctly by running OCR on a few things.  *
-* The final digit in the exit code counts the number of tests where the     *
-*tesseract output failed to match the expected output. If there are two     *
-* digits in the exit code, the first digit counts the number of tests where *
-* tesseract failed to run correctly or produce output.                      *
-*****************************************************************************/
+#/*****************************************************************************
+#* TEST                                                                      *
+#* Test that tesseract is working correctly by running OCR on a few things.  *
+#* The final digit in the exit code counts the number of tests where the     *
+#*tesseract output failed to match the expected output. If there are two     *
+#* digits in the exit code, the first digit counts the number of tests where *
+#* tesseract failed to run correctly or produce output.                      *
+#*****************************************************************************/
 EXIT_CODE=0
 
 # JPEG test
