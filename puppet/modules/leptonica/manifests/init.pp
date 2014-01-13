@@ -2,23 +2,10 @@
 #
 # Compiles and installs leptonica. http://www.leptonica.org/source/README.html
 #
-class leptonica {
-  require leptonica::params
+class leptonica inherits leptonica::params {  # has to inherit instead of require because http://docs.puppetlabs.com/puppet/3/reference/lang_classes.html#appendix-smart-parameter-defaults
   
   package { 'gcc':
     ensure => $gcc_version,
-  }
-  package { $libpng_packagename:
-    ensure => 'installed',
-  }
-  package { $libjpeg_packagename:
-    ensure => 'installed',
-  }
-  package { $libtiff_packagename:
-    ensure => 'installed',
-  }
-  package { $zlib_packagename:
-    ensure => 'installed',
   }
   
   /*****************************************************************************
