@@ -1,1 +1,1 @@
-sudo puppet apply ../puppet/manifests/default.pp --modulepath ../puppet/modules
+sudo puppet apply "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/../puppet/manifests/default.pp --modulepath "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/../puppet/modules
