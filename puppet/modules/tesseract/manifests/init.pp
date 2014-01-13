@@ -2,7 +2,7 @@
 #
 # Compiles and installs Tesseract OCR engine.
 #
-class tesseract inherits tesseract::params {  # has to inherit instead of require because http://docs.puppetlabs.com/puppet/3/reference/lang_classes.html#appendix-smart-parameter-defaults
+class tesseract inherits tesseract::params {
   require leptonica
   
   package { 'gcc-c++':
@@ -125,92 +125,16 @@ class tesseract inherits tesseract::params {  # has to inherit instead of requir
   
   /*****************************************************************************
    * TEST                                                                      *
-   * Test that tesseract is working correctly by running OCR on a few things.  *
+   * Set up a few files for tests; the tests themselves will be run by a shell *
+   * script.                                                                   *
    *****************************************************************************/
-  # JPEG test
-  exec { "retrieve jpg image of text":
-    cwd     => "/tmp",
-    command => "/usr/bin/wget http://upload.wikimedia.org/wikipedia/commons/5/5f/Dr._Jekyll_and_Mr._Hyde_Text.jpg -O /tmp/jekyll.jpg",
-    creates => "/tmp/jekyll.jpg",
-    timeout => 15,
-    require => Exec['install language data'],
-  }
-  
-  exec { "run ocr on jpg image of text":
-    cwd     => "/tmp",
-    command => "/usr/local/bin/tesseract /tmp/jekyll.jpg /tmp/jekyll",
-    creates => "/tmp/jekyll.txt",
-    timeout => 60,
-    require => Exec['retrieve jpg image of text'],
-  }
-  
   file { '/tmp/jekyll-correct.txt':
     content => template('BulletinScanner/jekyll-correct.txt.erb'),
   }
-  
-  exec { "compare jpg ocr run with golden":
-    # failure returns error like "change from notrun to 0 failed: /usr/bin/diff /tmp/jekyll.txt /tmp/jekyll-correct.txt returned 1 instead of one of [0]"
-    cwd     => "/tmp",
-    command => "/usr/bin/diff /tmp/jekyll.txt /tmp/jekyll-correct.txt",
-    require => Exec['run ocr on jpg image of text'],
-  }
-  
-  
-  # TIFF test
-  exec { "retrieve tiff image of text":
-    cwd     => "/tmp",
-    command => "/usr/bin/wget https://sites.google.com/site/cff2doc/phototest.tif -O /tmp/lazydog.tiff",
-    creates => "/tmp/lazydog.tiff",
-    timeout => 15,
-    require => Exec['install language data'],
-  }
-  
-  exec { "run ocr on tiff image of text":
-    cwd     => "/tmp",
-    command => "/usr/local/bin/tesseract /tmp/lazydog.tiff /tmp/lazydog",
-    creates => "/tmp/lazydog.txt",
-    timeout => 60,
-    require => Exec['retrieve tiff image of text'],
-  }
-  
   file { '/tmp/lazydog-correct.txt':
     content => template('BulletinScanner/lazydog-correct.txt.erb'),
   }
-  
-  exec { "compare tiff ocr run with golden":
-    # failure returns error like "change from notrun to 0 failed: /usr/bin/diff /tmp/lazydog.txt /tmp/lazydog-correct.txt returned 1 instead of one of [0]"
-    cwd     => "/tmp",
-    command => "/usr/bin/diff /tmp/lazydog.txt /tmp/lazydog-correct.txt",
-    require => Exec['run ocr on tiff image of text'],
+  file { '/tmp/druce-correct.txt':
+    content => template('BulletinScanner/druce-correct.txt.erb'),
   }
-  
-  
-  ## TODO: png files don't work -- something to look into perhaps
-  # PNG test
-  #exec { "retrieve png image of text":
-  #  cwd     => "/tmp",
-  #  command => "/usr/bin/wget http://upload.wikimedia.org/wikipedia/commons/7/75/Dan%27l_Druce%2C_Blacksmith_-_Illustrated_London_News%2C_November_18%2C_1876_-_text.png -O /tmp/druce.png",
-  #  creates => "/tmp/druce.png",
-  #  timeout => 15,
-  #  require => Exec['install language data'],
-  #}
-  #
-  #exec { "run ocr on png image of text":
-  #  cwd     => "/tmp",
-  #  command => "/usr/local/bin/tesseract /tmp/druce.png /tmp/druce",
-  #  creates => "/tmp/druce.txt",
-  #  timeout => 60,
-  #  require => Exec['retrieve png image of text'],
-  #}
-  #
-  #file { '/tmp/druce-correct.txt':
-  #  content => template('BulletinScanner/druce-correct.txt.erb'),
-  #}
-  #
-  #exec { "compare png ocr run with golden":
-  #  # failure returns error like "change from notrun to 0 failed: /usr/bin/diff /tmp/druce.txt /tmp/druce-correct.txt returned 1 instead of one of [0]"
-  #  cwd     => "/tmp",
-  #  command => "/usr/bin/diff /tmp/druce.txt /tmp/druce-correct.txt",
-  #  require => Exec['run ocr on png image of text'],
-  #}
 }
