@@ -8,4 +8,4 @@ WHAT IS THIS?
 
 
 BUILD:
-$ git clone git@github.com:jerrymaloney/BulletinScanner.git; cd BulletinScanner; deploy/bootstrap.sh; deploy/test-tesseract.sh
+$ git clone git@github.com:jerrymaloney/BulletinScanner.git; cd BulletinScanner; deploy/bootstrap.sh
