@@ -8,6 +8,18 @@ class leptonica {
   package { 'gcc':
     ensure => $gcc_version,
   }
+  package { $libpng_packagename:
+    ensure => 'installed',
+  }
+  package { $libjpeg_packagename:
+    ensure => 'installed',
+  }
+  package { $libtiff_packagename:
+    ensure => 'installed',
+  }
+  package { $zlib_packagename:
+    ensure => 'installed',
+  }
   
   /*****************************************************************************
    * COMPILE: http://www.leptonica.org/source/README.html#BUILDING             *
