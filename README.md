@@ -1,4 +1,4 @@
-yvonnesthing
+BulletinScanner
 ============
 WHAT IS THIS?
 * cataloguer for school bulletins (and other assorted flyers you get)
@@ -8,4 +8,4 @@ WHAT IS THIS?
 
 
 BUILD:
-$ git clone git@github.com:jerrymaloney/yvonnesthing.git; cd yvonnesthing; ./bootstrap.sh
+$ git clone git@github.com:jerrymaloney/BulletinScanner.git; cd BulletinScanner; ./bootstrap.sh
