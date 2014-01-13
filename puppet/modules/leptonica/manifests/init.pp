@@ -7,6 +7,29 @@ class leptonica inherits leptonica::params {  # has to inherit instead of requir
   package { 'gcc':
     ensure => $gcc_version,
   }
+  package { $libpng_packagename:
+    ensure => 'installed',
+  }
+  package { $libjpeg_packagename:
+    ensure => 'installed',
+  }
+  package { $libtiff_packagename:
+    ensure => 'installed',
+  }
+  package { $zlib_packagename:
+    ensure => 'installed',
+  }
+  exec { 'install leptonica prereqs':
+    # this is just a noop wrapper to make dependency management clearer
+    command => '/bin/echo "leptonica prereqs installed through package manager"',
+    require => [ 
+                 Package['gcc'],
+                 Package[$libpng_packagename],
+                 Package[$libjpeg_packagename],
+                 Package[$libtiff_packagename],
+                 Package[$zlib_packagename],
+               ]
+  }
   
   /*****************************************************************************
    * COMPILE: http://www.leptonica.org/source/README.html#BUILDING             *
@@ -29,8 +52,8 @@ class leptonica inherits leptonica::params {  # has to inherit instead of requir
     cwd     => '/tmp/leptonica-1.69',
     command => '/tmp/leptonica-1.69/configure',
     require => [ 
-                 Package['gcc'],
                  Exec['untar leptonica'],
+                 Exec['install leptonica prereqs'],
                ]
   }
   

@@ -17,19 +17,7 @@ class tesseract inherits tesseract::params {
   package { 'libtool':
     ensure => 'installed',
   }
-  package { $libpng_packagename:
-    ensure => 'installed',
-  }
-  package { $libjpeg_packagename:
-    ensure => 'installed',
-  }
-  package { $libtiff_packagename:
-    ensure => 'installed',
-  }
-  package { $zlib_packagename:
-    ensure => 'installed',
-  }
-  exec { 'install prereqs':
+  exec { 'install tesseract prereqs':
     # this is just a noop wrapper to make dependency management clearer
     command => '/bin/echo "tesseract prereqs installed through package manager"',
     require => [ 
@@ -37,10 +25,6 @@ class tesseract inherits tesseract::params {
                  Package['autoconf'],
                  Package['automake'],
                  Package['libtool'],
-                 Package[$libpng_packagename],
-                 Package[$libjpeg_packagename],
-                 Package[$libtiff_packagename],
-                 Package[$zlib_packagename],
                ]
   }
   
@@ -67,7 +51,7 @@ class tesseract inherits tesseract::params {
     command => '/tmp/tesseract-ocr/autogen.sh',
     creates => '/tmp/tesseract-ocr/config/ltmain.sh',
     require => [ 
-                 Exec['install prereqs'],
+                 Exec['install tesseract prereqs'],
                  Exec['untar tesseract'],
                ]
   }
