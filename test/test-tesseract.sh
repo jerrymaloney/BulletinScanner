@@ -11,8 +11,7 @@ EXIT_CODE=0
 
 # JPEG test
 echo "******************* JPEG TEST *******************"
-wget http://upload.wikimedia.org/wikipedia/commons/5/5f/Dr._Jekyll_and_Mr._Hyde_Text.jpg -O /tmp/jekyll.jpg
-tesseract /tmp/jekyll.jpg /tmp/jekyll
+tesseract ./files/Dr._Jekyll_and_Mr._Hyde_Text.jpg /tmp/jekyll
 if [ $? -ne 0 ]; then
   let EXIT_CODE+=10
 fi
@@ -25,8 +24,7 @@ echo
 
 # TIFF test
 echo "******************* TIFF TEST *******************"
-wget https://sites.google.com/site/cff2doc/phototest.tif -O /tmp/lazydog.tiff
-tesseract /tmp/lazydog.tiff /tmp/lazydog
+tesseract ./files/lazydog.tiff /tmp/lazydog
 if [ $? -ne 0 ]; then
   let EXIT_CODE+=10
 fi
@@ -40,8 +38,7 @@ echo
 ## TODO: png files don't work -- something to look into perhaps
 ## PNG test
 # echo "******************* PNG  TEST *******************"
-# wget http://upload.wikimedia.org/wikipedia/commons/7/75/Dan%27l_Druce%2C_Blacksmith_-_Illustrated_London_News%2C_November_18%2C_1876_-_text.png -O /tmp/druce.png
-# tesseract /tmp/druce.png /tmp/druce
+# tesseract ./Dan'l_Druce,_Blacksmith_-_Illustrated_London_News,_November_18,_1876_-_text.png /tmp/druce
 # if [ $? -ne 0 ]; then
 #   let EXIT_CODE+=10
 # fi
