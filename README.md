@@ -9,3 +9,7 @@ WHAT IS THIS?
 
 BUILD:
 $ git clone git@github.com:jerrymaloney/BulletinScanner.git; cd BulletinScanner; deploy/install.sh
+
+RUN SERVER:
+$ sudo node /var/www/bulletinscanner/server.js
+
