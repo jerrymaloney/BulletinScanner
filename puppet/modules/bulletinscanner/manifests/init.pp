@@ -29,8 +29,8 @@ class bulletinscanner {
   }
   
   # install node.js platform for web server
-  class { 'nodejs':
-    version => 'v0.10.25', 
+  package { ['nodejs', 'npm']:
+    ensure => 'present', 
   }
   
   # deploy application files
