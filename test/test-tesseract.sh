@@ -15,7 +15,7 @@ echo
 
 # JPEG test
 echo "************************ JPEG TEST ************************"
-tesseract $DIR/files/Dr._Jekyll_and_Mr._Hyde_Text.jpg /tmp/jekyll
+tesseract $DIR/files/samples/Dr._Jekyll_and_Mr._Hyde_Text.jpg /tmp/jekyll
 if [ $? -ne 0 ]; then
   let EXIT_CODE+=10
 fi
@@ -30,7 +30,7 @@ echo
 
 # TIFF test
 echo "************************ TIFF TEST ************************"
-tesseract $DIR/files/lazydog.tiff /tmp/lazydog
+tesseract $DIR/files/samples/lazydog.tiff /tmp/lazydog
 if [ $? -ne 0 ]; then
   let EXIT_CODE+=10
 fi
@@ -46,7 +46,7 @@ echo
 ## TODO: png files don't work -- something to look into perhaps
 ## PNG test
 # echo "************************ PNG  TEST ************************"
-# tesseract $DIR/files/Dan'l_Druce,_Blacksmith_-_Illustrated_London_News,_November_18,_1876_-_text.png /tmp/druce
+# tesseract $DIR/files/samples/Dan'l_Druce,_Blacksmith_-_Illustrated_London_News,_November_18,_1876_-_text.png /tmp/druce
 # if [ $? -ne 0 ]; then
 #   let EXIT_CODE+=10
 # fi
